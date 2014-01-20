@@ -44,6 +44,7 @@ feature Issue do
         expect(page).to have_content(issue.reporter_name)
         expect(page).to have_content('Comment from Test')
       end
+      expect(page).to have_content('waiting_for_staff_response')
     end
 
     scenario 'View issues list' do
@@ -74,6 +75,7 @@ feature Issue do
         expect(page).to have_content(@user.username)
         expect(page).to have_content('Comment from logged_in user')
       end
+      expect(page).to have_content('waiting_for_customer')
     end
 
     scenario 'View list of issues' do

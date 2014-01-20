@@ -3,26 +3,13 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
-
 * Ruby version
-
-* System dependencies
+See .rvmrc to get info about version
 
 * Configuration
+use config/application.yml to setup all "external variables"
 
-* Database creation
 
 * Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+use `rake db:seed` to prefill database with same data
+Note: in development mode will be opened 25 browser tabs to show emails (letter_opener gem)

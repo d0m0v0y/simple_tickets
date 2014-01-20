@@ -4,6 +4,8 @@ class Comment < ActiveRecord::Base
 
   validates_presence_of :body
 
+  after_save :change_issue_status
+
   def author
     if user.present?
       user.username
@@ -11,4 +13,13 @@ class Comment < ActiveRecord::Base
       issue.reporter_name
     end
   end
+
+  def change_issue_status
+    if self.user_id.present?
+      self.issue.staff_response!
+    else
+      self.issue.customer_response!
+    end
+  end
+
 end
