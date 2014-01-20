@@ -1,0 +1,9 @@
+h2 New issue
+div
+   | Hi,
+   = @issue.reporter_name
+p
+  | New issue #{@issue.id} has been created
+p
+  | You can view details about this issue #{link_to 'here', issue_url(@issue)}
+  |   and leave your comments

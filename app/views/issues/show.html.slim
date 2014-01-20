@@ -1,0 +1,59 @@
+.container
+  h3
+   | Issue #
+   = @issue.id
+  .row
+    == render 'shared/issue_actions'
+  div#issue_details
+    .row
+      .col-md-10
+        .row
+          .col-md-2
+            strong Reporter name:
+          .col-md-4
+            = @issue.reporter_name
+        .row
+          .col-md-2
+            strong Reporter email:
+          .col-md-8
+            = @issue.reporter_email
+        .row
+          .col-md-2
+            strong Department:
+          .col-md-8
+            = @issue.department_name
+        .row
+          .col-md-2
+            strong Assigned to:
+          .col-md-8
+            = @issue.assigned_to
+        .row
+          .col-md-2
+            strong Status:
+          .col-md-8
+            = @issue.status
+        .row
+          .col-md-2
+            strong Subject
+          .col-md-8
+            = @issue.subject
+        .row
+          .col-md-2
+            strong Description
+          .col-md-8
+            = simple_format @issue.description
+
+    .row
+      -if @issue.comments.any?
+        #comments_container.well
+          h4 Comments
+          == render partial: 'comments/comment', collection: @issue.comments
+    .row
+      - if @issue.can_comment?
+        == render 'comments/form', locals: {issue: @issue}
+    .row
+      - if user_signed_in?
+        = link_to 'Back to issues list', issues_path
+
+
+

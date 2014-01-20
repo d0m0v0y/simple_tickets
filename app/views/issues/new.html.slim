@@ -1,0 +1,20 @@
+.container
+  h3 New issue
+  = form_for @issue, html: {role: 'form'} do |f|
+    .form-group
+      = f.label :reporter_name
+      = f.text_field :reporter_name, class: 'form-control'
+    .form-group
+      = f.label :reporter_email
+      = f.text_field :reporter_email, class: 'form-control'
+    .form-group
+      = f.label :department
+      = f.collection_select :department_id, Department.all, :id, :name, { prompt: 'Please select department' }, { class: 'form-control' }
+    .form-group
+      = f.label :subject
+      = f.text_field :subject, class: 'form-control'
+    .form-group
+      = f.label :description
+      = f.text_area :description, class: 'form-control'
+    button.btn.btn-primary type="submit"
+      | Submit

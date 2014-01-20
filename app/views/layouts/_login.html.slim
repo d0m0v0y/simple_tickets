@@ -1,0 +1,9 @@
+li
+  - if user_signed_in?
+    p.navbar-text
+      | Logged as: &nbsp;
+      = current_user.email
+      | &nbsp;
+      = link_to 'Log Out', destroy_user_session_path, method: :delete
+  - else
+    = link_to 'Log In', new_user_session_path

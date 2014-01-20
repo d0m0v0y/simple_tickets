@@ -1,0 +1,11 @@
+li = link_to 'All Issues', issues_path
+li = link_to 'Unassigned', issues_path(unassigned: true)
+li = link_to 'Opened', issues_path(opened: true)
+li = link_to 'On Hold', issues_path(on_hold: true)
+li = link_to 'Closed', issues_path(closed: true)
+= form_tag issues_path, method: :get, class: 'navbar-form navbar-left', role: 'search' do
+  .form-group
+    = text_field_tag :filtered, nil, placeholder: 'Search...', class: 'form-control'
+  button#search_button.btn.btn-default type="submit" Submit
+
+

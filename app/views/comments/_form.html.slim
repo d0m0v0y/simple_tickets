@@ -1,0 +1,10 @@
+.well
+  = form_for @comment, html: { role: 'form' } do |f|
+    = f.hidden_field :issue_id
+    - if user_signed_in?
+      = f.hidden_field :user_id, value: current_user.to_param
+    .form-group
+      | Leave your comment
+      = f.text_area :body, class: 'form-control'
+    button#submit_comment.btn.btn-primary type="submit"
+      | Submit

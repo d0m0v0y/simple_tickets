@@ -1,0 +1,12 @@
+- if user_signed_in?
+  .col-md-4
+    .btn-group
+      - @issue.possible_actions.each do |a|
+        button.btn.btn-default type="button"
+          = link_to a.to_s, issue_fire_path(@issue, event: a), method: :patch, class: 'btn-link default-link'
+  .col-md-4
+    = form_for @issue, method: :patch, html: { class: 'form-inline', role: 'form' } do |f|
+      button.btn.btn-default type="submit"
+        | Assign to:
+      .form-group
+        = f.collection_select :user_id, User.all, :id, :username, { promt: 'Please select assignee'}, { class: 'form-control'}

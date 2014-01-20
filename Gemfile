@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# Use MySQL as the database for Active Record
+gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -43,3 +43,36 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'bootstrap-sass'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
+
+group :development do
+  unless ENV['RM_INFO']
+    gem 'pry'
+    #gem 'pry-remote'
+    gem 'pry-stack_explorer'
+    gem 'pry-debugger'
+  end
+  gem 'rails_layout'
+  gem 'letter_opener'
+end
+
+group :test do
+  gem 'ffaker'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+end
+
+gem 'devise'
+gem 'slim-rails'
+gem 'email_validator'
+gem 'aasm'
+gem 'has_scope'
+gem 'figaro'
+gem 'will_paginate-bootstrap'

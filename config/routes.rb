@@ -1,4 +1,16 @@
 SimpleTickets::Application.routes.draw do
+  get "commnets/create"
+  devise_for :users
+
+  root 'issues#new'
+
+  resources :issues do
+    patch :fire
+  end
+
+  resources :comments, only: [:new, :create]
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
