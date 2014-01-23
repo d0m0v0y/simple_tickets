@@ -10,7 +10,7 @@
       tbody
         - @issues.each do |i|
           = content_tag_for :tr, i
-            td = link_to i.id, issue_path(i)
+            td = link_to i.uid, issue_path(i)
             td = link_to i.subject, issue_path(i)
             td
               = i.reporter_name

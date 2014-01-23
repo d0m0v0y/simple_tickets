@@ -82,7 +82,7 @@ feature Issue do
       visit issues_path
       Issue.all.each do |issue|
         within("#issue_#{issue.id}") do
-          expect(page).to have_link(issue.id)
+          expect(page).to have_link(issue.uid)
           expect(page).to have_content(issue.reporter_name)
           expect(page).to have_link(issue.subject)
           expect(page).to have_content(issue.status)
