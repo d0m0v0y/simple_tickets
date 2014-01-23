@@ -44,9 +44,7 @@ class IssuesController < ApplicationController
 
   def fire
     @issue = Issue.find(params[:issue_id])
-    if @issue.aasm.events.include? params[:event].to_sym
-      @issue.send("#{params[:event]}!") rescue nil
-    end
+    @issue.fire(params[:event]) if @issue.present?
     redirect_to @issue
   end
 

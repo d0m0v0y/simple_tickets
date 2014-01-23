@@ -15,10 +15,10 @@ class Comment < ActiveRecord::Base
   end
 
   def change_issue_status
-    if self.user_id.present?
-      self.issue.staff_response!
+    if user.present?
+      issue.staff_response!
     else
-      self.issue.customer_response!
+      issue.customer_response!
     end
   end
 

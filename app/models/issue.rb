@@ -72,4 +72,8 @@ class Issue < ActiveRecord::Base
     IssueMailer.new_issue(self).deliver
   end
 
+  def fire(event)
+    self.send("#{event}!") if self.aasm.events.include? event.to_sym
+  end
+
 end
