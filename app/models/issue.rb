@@ -15,12 +15,15 @@ class Issue < ActiveRecord::Base
 
   after_create :send_notification
 
+  delegate :name, to: :department, prefix: true, allow_nil: true
+  #delegate :username, to: :user, allow_nil: true
+
   # set pagination count
   self.per_page = 10
 
-  def department_name
-    department.name if department.present?
-  end
+  #def department_name
+  #  department.name if department.present?
+  #end
 
   def assigned_to
     user.username if user.present?
