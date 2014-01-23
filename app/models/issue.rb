@@ -14,6 +14,7 @@ class Issue < ActiveRecord::Base
   scope :filtered, -> (query) { where("id = ? OR subject LIKE ?", query, "%#{query}%")}
 
   after_create :send_notification
+  before_validation :generate_uid, on: :create
 
   delegate :name, to: :department, prefix: true, allow_nil: true
   #delegate :username, to: :user, allow_nil: true
@@ -77,6 +78,29 @@ class Issue < ActiveRecord::Base
 
   def fire(event)
     self.send("#{event}!") if self.aasm.events.include? event.to_sym
+  end
+
+  private
+
+  def generate_uid
+    while true
+      temp_uid = build_uid
+      if ensure_uniq?(temp_uid)
+        self.uid = temp_uid
+        break
+      end
+    end
+  end
+
+  def build_uid
+    # ABC-123-ABC-123AB where: ABC is random 3-char string, 123–random 3-digit number
+    chars = ('A'..'Z').to_a
+    numbers = (0..9).to_a
+    "#{chars.sample(3).join}-#{numbers.sample(3).join}-#{chars.sample(3).join}-#{numbers.sample(3).join}#{chars.sample(2).join}"
+  end
+
+  def ensure_uniq?(uid)
+    Issue.find_by_uid(uid).blank?
   end
 
 end
